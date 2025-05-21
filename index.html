@@ -15,8 +15,7 @@
             background-color: #F7F7F7;
         }
         .photo-placeholder {
-            background-color: #E0E0E0;
-            width: 100%;
+            /* width: 100%; /* Mantido para ocupar o espaço do contêiner pai se w-.. h-.. forem removidos e usar aspect-ratio */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -24,30 +23,31 @@
             font-size: 0.875rem;
             border-radius: 0.5rem;
             text-align: center;
-            padding: 0;
+            /* padding: 0; /* Removido para permitir que o padding do Tailwind funcione se necessário */
             overflow: hidden;
+            background-color: #E0E0E0; /* Movido para cá para garantir visibilidade */
         }
         .photo-placeholder img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 0.5rem;
+            border-radius: 0.5rem; /* Mantido se a div não tiver overflow:hidden e border-radius */
         }
         .benefit-item {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 0.5rem;
+            align-items: flex-start; /* Ícone e texto alinhados no topo */
+            margin-bottom: 0.5rem; /* Equivalente a space-y-2 na lista ul */
         }
         .benefit-icon {
-            margin-right: 0.5rem;
+            margin-right: 0.5rem; /* Equivalente a mr-2 */
             color: #06D6A0;
-            flex-shrink: 0;
+            flex-shrink: 0; /* Para o ícone não encolher */
         }
         .section-title-underline {
             display: inline-block;
             border-bottom: 3px solid #FFD166;
-            padding-bottom: 0.25rem;
-            margin-bottom: 1rem;
+            padding-bottom: 0.25rem; /* Tailwind: pb-1 */
+            margin-bottom: 1rem; /* Tailwind: mb-4. Aplicado ao span, o h2 pode ter seu próprio mb. */
         }
         .tagline {
             color: #118AB2;
@@ -59,15 +59,15 @@
         }
         .product-card {
             background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            border-radius: 0.75rem; /* Tailwind: rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Tailwind: shadow-lg */
+            /* padding: 1.5rem; /* Removido para usar Tailwind p-4 sm:p-6 no HTML */
+            margin-bottom: 2rem; /* Tailwind: mb-8 */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Tailwind: hover:shadow-xl */
         }
         .sticky-nav {
             position: sticky;
@@ -75,18 +75,24 @@
             z-index: 50;
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 0.75rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            overflow-x: auto;
-            white-space: nowrap;
+            /* padding: 0.75rem 0; /* Tailwind: py-3 */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Tailwind: shadow-md */
+            overflow-x: auto; /* Mantém a rolagem horizontal para muitos itens */
+            white-space: nowrap; /* Mantém os itens em uma linha */
         }
         .sticky-nav a {
             color: #073B4C;
-            padding: 0.5rem 1rem;
-            margin: 0 0.25rem;
-            border-radius: 0.375rem;
-            font-weight: 600;
+            padding: 0.5rem 0.75rem; /* Reduzido um pouco para telas menores por padrão */
+            /* Tailwind: py-2 px-3 */
+            margin: 0 0.25rem; /* Tailwind: mx-1 */
+            border-radius: 0.375rem; /* Tailwind: rounded-md */
+            font-weight: 600; /* Tailwind: font-semibold */
             transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        @media (min-width: 640px) { /* sm breakpoint */
+            .sticky-nav a {
+                padding: 0.5rem 1rem; /* Restaura padding para telas maiores. Tailwind: sm:py-2 sm:px-4 */
+            }
         }
         .sticky-nav a:hover, .sticky-nav a.active {
             background-color: #118AB2;
@@ -95,12 +101,12 @@
         .flavor-list li, .version-list li {
             background-color: #E0F2FE;
             color: #0C546E;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
+            padding: 0.25rem 0.75rem; /* Tailwind: py-1 px-3 */
+            border-radius: 9999px; /* Tailwind: rounded-full */
+            font-size: 0.875rem; /* Tailwind: text-sm */
+            font-weight: 500; /* Tailwind: font-medium */
+            margin-right: 0.5rem; /* Tailwind: mr-2 */
+            margin-bottom: 0.5rem; /* Tailwind: mb-2 */
             display: inline-block;
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
@@ -111,12 +117,12 @@
         .flavor-list li.active-flavor, .version-list li.active-version {
             background-color: #118AB2;
             color: white;
-            font-weight: bold;
+            font-weight: bold; /* Tailwind: font-bold */
             box-shadow: 0 0 0 2px #FFD166;
         }
         .social-icon {
             color: #FFD166;
-            font-size: 1.75rem;
+            font-size: 1.75rem; /* Tailwind: text-2xl ou text-3xl dependendo do tamanho exato */
             transition: color 0.3s ease, transform 0.3s ease;
         }
         .social-icon:hover {
@@ -127,311 +133,297 @@
 </head>
 <body class="text-gray-800">
 
-<header class="w-full min-h-screen bg-gradient-to-r from-[#06D6A0] to-[#118AB2] text-white p-12 md:p-16 text-center shadow-lg flex flex-col justify-center items-center">    <h1 class="text-4xl md:text-5xl font-bold mb-3">Probióticos do Brasil</h1>
-    <p class="text-xl md:text-xl mb-4">Sua Jornada para Mais Saúde e Bem-Estar!</p>
-    <p class="mt-4 max-w-xl mx-auto text-base md:text-lg">Fortaleça seu corpo de dentro para fora com o poder dos probióticos. A Probióticos do Brasil oferece soluções específicas para cada necessidade, desenvolvidas com tecnologia e ingredientes de alta qualidade, visando o seu máximo bem-estar.</p>
-    <img src="logosemfundo.png" alt="Logo Probióticos do Brasil" class="mt-6 mx-auto max-w-[240px] sm:max-w-[280px] md:max-w-[320px] h-auto rounded-lg object-contain">
+<header class="bg-gradient-to-r from-[#06D6A0] to-[#118AB2] text-white p-6 sm:p-8 md:p-12 lg:p-16 text-center rounded-b-xl shadow-lg min-h-[250px] sm:min-h-[300px] flex flex-col justify-center items-center">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3">Probióticos do Brasil</h1>
+    <p class="text-lg sm:text-xl md:text-xl mb-4">Sua Jornada para Mais Saúde e Bem-Estar!</p>
+    <p class="mt-4 max-w-xl mx-auto text-sm sm:text-base md:text-lg">Fortaleça seu corpo de dentro para fora com o poder dos probióticos. A Probióticos do Brasil oferece soluções específicas para cada necessidade, desenvolvidas com tecnologia e ingredientes de alta qualidade, visando o seu máximo bem-estar.</p>
+    <img src="logosemfundo.png" alt="Logo Probióticos do Brasil" class="mt-6 mx-auto max-w-[180px] sm:max-w-[240px] md:max-w-[280px] lg:max-w-[320px] h-auto rounded-lg object-contain">
 </header>
 
-<nav id="product-nav" class="sticky-nav mt-6 mb-8">
-    <div class="container mx-auto px-4 flex justify-center">
-        <a href="#probioseries">Probioseries</a>
-        <a href="#bragurt-vegetal">Bragurt Vegetal</a>
-        <a href="#bragurt-lacteo">Bragurt Lácteo</a>
-        <a href="#porque-escolher">Por que Escolher?</a>
+<nav id="product-nav" class="sticky-nav mt-6 mb-8 py-3"> <div class="container mx-auto px-2 sm:px-4 flex justify-center"> <a href="#probioseries" class="py-2 px-3 sm:py-2 sm:px-4">Probioseries</a>
+        <a href="#bragurt-vegetal" class="py-2 px-3 sm:py-2 sm:px-4">Bragurt Vegetal</a>
+        <a href="#bragurt-lacteo" class="py-2 px-3 sm:py-2 sm:px-4">Bragurt Lácteo</a>
+        <a href="#porque-escolher" class="py-2 px-3 sm:py-2 sm:px-4">Por que Escolher?</a>
     </div>
 </nav>
 
 <main class="container mx-auto p-4 md:p-8">
 
     <section id="probioseries" class="mb-12 pt-16 -mt-16">
-        <h2 class="text-3xl font-bold mb-2 text-[#073B4C] flex justify-center">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-2 text-[#073B4C] flex justify-center">
             <span class="section-title-underline">PROBIO SERIES</span>
         </h2>
-        <p class="text-center text-lg text-gray-700 mb-8">Tecnologia e cuidado específico para o seu bem-estar diário, com cepas selecionadas e microencapsulação avançada.</p>
+        <p class="text-center text-base sm:text-lg text-gray-700 mb-8">Tecnologia e cuidado específico para o seu bem-estar diário, com cepas selecionadas e microencapsulação avançada.</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8">
-
-            <article class="product-card">
-                <h3 class="text-2xl font-semibold text-[#073B4C] mb-1">Probioseries Defense Forte</h3>
-                <p class="tagline mb-4">Imunidade Blindada, Vitalidade Renovada!</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 gap-8"> <article class="product-card p-4 sm:p-6">
+                <h3 class="text-xl sm:text-2xl font-semibold text-[#073B4C] mb-1">Probioseries Defense Forte</h3>
+                <p class="tagline mb-4 text-sm sm:text-base">Imunidade Blindada, Vitalidade Renovada!</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                        <div class="photo-placeholder mb-4 w-58 h-58">
+                        <div class="photo-placeholder mb-4 w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mx-auto md:mx-0">
                             <img src="d.png" alt="Foto Probioseries Defense Forte" id="defenseForteImage">
                         </div>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
-                        <ul class="list-none space-y-2 mb-4">
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
+                        <ul class="list-none space-y-2 mb-4 text-sm sm:text-base">
                             <li class="benefit-item"><span class="benefit-icon">🛡️</span>Imunidade Reforçada: Proteção contra doenças, alergias e gripes.</li>
                             <li class="benefit-item"><span class="benefit-icon">🌿</span>Digestão Impecável: Melhora o processo digestivo e absorção de nutrientes.</li>
                             <li class="benefit-item"><span class="benefit-icon">✨</span>Bem-Estar Inigualável: Mais energia, disposição e melhora do humor.</li>
                         </ul>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Custo:</h4>
-                        <p>Promocional: <span class="cost-highlight text-xl">R$ 65,30</span> (Original: <del>R$ 79,30</del>)</p>
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Custo:</h4>
+                        <p class="text-sm sm:text-base">Promocional: <span class="cost-highlight text-lg sm:text-xl">R$ 65,30</span> (Original: <del>R$ 79,30</del>)</p>
                     </div>
-                    <div>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Ingredientes Chave e Tecnologia:</h4>
+                    <div class="text-sm sm:text-base">
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Ingredientes Chave e Tecnologia:</h4>
                         <ul class="list-none space-y-2 mb-4">
                             <li class="benefit-item"><span class="benefit-icon">🔬</span>Cepas: *Lactobacillus casei*, *Lactobacillus johnsonii*.</li>
-                            <li class="benefit-item"><span class="benefit-icon">🔢</span>Potência: <strong class="text-[#FF6B6B] text-xl">25 Bilhões</strong> de UFC por cápsula.</li>
+                            <li class="benefit-item"><span class="benefit-icon">🔢</span>Potência: <strong class="text-[#FF6B6B] text-base sm:text-lg md:text-xl">25 Bilhões</strong> de UFC por cápsula.</li>
                             <li class="benefit-item"><span class="benefit-icon">🛡️</span>Tecnologia: Microencapsulação Avançada para máxima eficácia.</li>
-                            <li class="text-sm text-gray-600">Outros: Maltodextrina, amido de milho, dióxido de silício, celulose microcristalina, estearato de magnésio.</li>
+                            <li class="text-xs sm:text-sm text-gray-600">Outros: Maltodextrina, amido de milho, dióxido de silício, celulose microcristalina, estearato de magnésio.</li>
                         </ul>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Como Tomar:</h4>
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Como Tomar:</h4>
                         <p class="mb-4">1 cápsula por dia, preferencialmente à noite, antes de dormir, com água, suco, leite ou batidos frios.</p>
                     </div>
                 </div>
             </article>
 
-            <article class="product-card">
-                <h3 class="text-2xl font-semibold text-[#073B4C] mb-1">Probioseries Digestive Multicepa</h3>
-                <p class="tagline mb-4">Sua Digestão em Harmonia, Vida Mais Leve!</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <article class="product-card p-4 sm:p-6">
+                <h3 class="text-xl sm:text-2xl font-semibold text-[#073B4C] mb-1">Probioseries Digestive Multicepa</h3>
+                <p class="tagline mb-4 text-sm sm:text-base">Sua Digestão em Harmonia, Vida Mais Leve!</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                        <div class="photo-placeholder mb-4 w-58 h-58">
+                        <div class="photo-placeholder mb-4 w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mx-auto md:mx-0">
                             <img src="3.png" alt="Foto Probioseries Digestive Multicepa" id="digestiveMulticepaImage">
                         </div>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
-                        <ul class="list-none space-y-2 mb-4">
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
+                        <ul class="list-none space-y-2 mb-4 text-sm sm:text-base">
                             <li class="benefit-item"><span class="benefit-icon">🔗</span>Regula o Trânsito Intestinal: Conforto digestivo duradouro.</li>
                             <li class="benefit-item"><span class="benefit-icon">🌿</span>Saúde Digestiva Completa: Equilibra a flora intestinal, alivia inchaço.</li>
                             <li class="benefit-item"><span class="benefit-icon">🛡️</span>Ação Colonizadora Eficaz: "Exército de elite" de microrganismos benéficos.</li>
                         </ul>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Custo:</h4>
-                        <p>Promocional: <span class="cost-highlight text-xl">R$ 65,30</span> (Original: <del>R$ 79,30</del>)</p>
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Custo:</h4>
+                        <p class="text-sm sm:text-base">Promocional: <span class="cost-highlight text-lg sm:text-xl">R$ 65,30</span> (Original: <del>R$ 79,30</del>)</p>
                     </div>
-                    <div>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Ingredientes Chave e Tecnologia:</h4>
+                    <div class="text-sm sm:text-base">
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Ingredientes Chave e Tecnologia:</h4>
                         <ul class="list-none space-y-2 mb-4">
-                            <li class="benefit-item"><span class="benefit-icon">🔬</span>Cepas: <strong class="text-[#FF6B6B] text-xl">10 Cepas Exclusivas</strong> (*L. johnsonii, L. rhamnosus, L. bulgaricus, L. acidophilus, L. casei, L. paracasei, B. lactis, B. longum, S. thermophilus, B. coagulans*).</li>
-                            <li class="benefit-item"><span class="benefit-icon">🔢</span>Potência Total: <strong class="text-[#FF6B6B] text-xl">25 Bilhões</strong> de UFC por cápsula.</li>
+                            <li class="benefit-item"><span class="benefit-icon">🔬</span>Cepas: <strong class="text-[#FF6B6B] text-base sm:text-lg">10 Cepas Exclusivas</strong> (*L. johnsonii, ...*).</li>
+                            <li class="benefit-item"><span class="benefit-icon">🔢</span>Potência Total: <strong class="text-[#FF6B6B] text-base sm:text-lg md:text-xl">25 Bilhões</strong> de UFC por cápsula.</li>
                             <li class="benefit-item"><span class="benefit-icon">🌾</span>Prebiótico: Contém Inulina para efeito simbiótico.</li>
                             <li class="benefit-item"><span class="benefit-icon">🛡️</span>Tecnologia: Cepas Microencapsuladas. Cápsulas vegetais.</li>
                         </ul>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Como Tomar:</h4>
-                        <p class="mb-4">1 cápsula ao dia, idealmente à noite, antes de dormir, com água, suco, leite ou batidos frios.</p>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Precauções:</h4>
-                        <p class="text-sm text-red-600">Contém derivados lácteos. Processado em instalações que manipulam soja.</p>
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Como Tomar:</h4>
+                        <p class="mb-4">1 cápsula ao dia, idealmente à noite...</p>
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Precauções:</h4>
+                        <p class="text-xs sm:text-sm text-red-600">Contém derivados lácteos...</p>
                     </div>
                 </div>
             </article>
 
-            <article class="product-card">
-                <h3 class="text-2xl font-semibold text-[#073B4C] mb-1">Probioseries Woman: Probióticos + Maqui & Mirtilo</h3>
-                <p class="tagline mb-4">Saúde Íntima e Bem-Estar Completo para Ela!</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <article class="product-card p-4 sm:p-6">
+                <h3 class="text-xl sm:text-2xl font-semibold text-[#073B4C] mb-1">Probioseries Woman: Probióticos + Maqui & Mirtilo</h3>
+                <p class="tagline mb-4 text-sm sm:text-base">Saúde Íntima e Bem-Estar Completo para Ela!</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                        <div class="photo-placeholder mb-4 w-58 h-58">
+                        <div class="photo-placeholder mb-4 w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mx-auto md:mx-0">
                             <img src="w.png" alt="Foto Probioseries Woman" id="womanImage">
                         </div>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
-                        <ul class="list-none space-y-2 mb-4">
-                            <li class="benefit-item"><span class="benefit-icon">🌸</span>Prevenção e Cuidado Íntimo: Auxilia contra infecções urinárias e candidíase.</li>
-                            <li class="benefit-item"><span class="benefit-icon">⚖️</span>Equilíbrio da Flora: Vaginal e intestinal.</li>
-                            <li class="benefit-item"><span class="benefit-icon">🫐</span>Ação Antioxidante Poderosa: Com Maqui e Mirtilo liofilizados.</li>
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
+                        <ul class="list-none space-y-2 mb-4 text-sm sm:text-base">
+                            <li class="benefit-item"><span class="benefit-icon">🌸</span>Prevenção e Cuidado Íntimo...</li>
+                            <li class="benefit-item"><span class="benefit-icon">⚖️</span>Equilíbrio da Flora...</li>
+                            <li class="benefit-item"><span class="benefit-icon">🫐</span>Ação Antioxidante Poderosa...</li>
                             <li class="benefit-item"><span class="benefit-icon">🛡️</span>Fortalecimento Imunológico.</li>
                         </ul>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Custo:</h4>
-                        <p>Promocional: <span class="cost-highlight text-xl">R$ 65,30</span> (Original: <del>R$ 79,30</del>)</p>
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Custo:</h4>
+                        <p class="text-sm sm:text-base">Promocional: <span class="cost-highlight text-lg sm:text-xl">R$ 65,30</span> (Original: <del>R$ 79,30</del>)</p>
                     </div>
-                    <div>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Ingredientes Chave e Tecnologia:</h4>
+                    <div class="text-sm sm:text-base">
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Ingredientes Chave e Tecnologia:</h4>
                         <ul class="list-none space-y-2 mb-4">
-                            <li class="benefit-item"><span class="benefit-icon">🔬</span>Cepas: <strong class="text-[#FF6B6B]">3 Cepas Exclusivas</strong> para saúde da mulher (*L. plantarum, L. crispatus, L. gasseri*).</li>
-                            <li class="benefit-item"><span class="benefit-icon">🔢</span>Potência: <strong class="text-[#FF6B6B] text-xl">25 Bilhões</strong> de UFC por cápsula.</li>
-                            <li class="benefit-item"><span class="benefit-icon">🫐</span>Superfrutas: <strong class="text-[#FF6B6B]">50% Maqui e Mirtilo</strong> Liofilizados.</li>
+                            <li class="benefit-item"><span class="benefit-icon">🔬</span>Cepas: <strong class="text-[#FF6B6B] text-base sm:text-lg">3 Cepas Exclusivas</strong>...</li>
+                            <li class="benefit-item"><span class="benefit-icon">🔢</span>Potência: <strong class="text-[#FF6B6B] text-base sm:text-lg md:text-xl">25 Bilhões</strong> de UFC por cápsula.</li>
+                            <li class="benefit-item"><span class="benefit-icon">🫐</span>Superfrutas: <strong class="text-[#FF6B6B] text-base sm:text-lg">50% Maqui e Mirtilo</strong> Liofilizados.</li>
                             <li class="benefit-item"><span class="benefit-icon">🛡️</span>Tecnologia: Probióticos Microencapsulados.</li>
-                            <li class="text-sm text-gray-600">Fórmula Avançada: Sem lactose, sem glúten, cápsulas vegetais.</li>
+                            <li class="text-xs sm:text-sm text-gray-600">Fórmula Avançada: Sem lactose...</li>
                         </ul>
-                        <h4 class="font-semibold text-lg mb-2 mt-4 text-[#118AB2]">Como Tomar:</h4>
-                        <p class="mb-4">1 cápsula ao dia, preferencialmente à noite, antes de dormir, com água ou bebida fria.</p>
-                        <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Precauções:</h4>
-                        <p class="text-sm text-red-600">Verificar embalagem individual sobre lactose/derivados lácteos, especialmente em combos.</p>
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 mt-4 text-[#118AB2]">Como Tomar:</h4>
+                        <p class="mb-4">1 cápsula ao dia...</p>
+                        <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Precauções:</h4>
+                        <p class="text-xs sm:text-sm text-red-600">Verificar embalagem individual...</p>
                     </div>
                 </div>
             </article>
         </div>
     </section>
 
-    <section id="bragurt-vegetal" class="mb-12 pt-16 -mt-16">
-        <h2 class="text-3xl font-bold mb-2 text-[#073B4C] flex justify-center">
+    <section id="bragurt-vegetal" class="mb-12 pt-16 -mt-16 text-center"> <h2 class="text-2xl sm:text-3xl font-bold mb-2 text-[#073B4C] flex justify-center">
             <span class="section-title-underline">IORGUTE VEGETAL</span>
         </h2>
-        <p class="text-center text-lg text-gray-700 mb-8">Sabor e saúde sem lácteos, para um dia a dia delicioso e vegano.</p>
+        <p class="text-center text-base sm:text-lg text-gray-700 mb-8">Sabor e saúde sem lácteos, para um dia a dia delicioso e vegano.</p>
 
-        <article class="product-card">
-            <h3 class="text-2xl font-semibold text-[#073B4C] mb-1">Bragurt Vegetal – Sabor Coco (sem soja)</h3>
-            <p class="tagline mb-4">Seu Iogurte Vegano Cremoso, Sem Soja e Cheio de Sabor!</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="product-card p-4 sm:p-6">
+            <h3 class="text-xl sm:text-2xl font-semibold text-[#073B4C] mb-1">Bragurt Vegetal – Sabor Coco (sem soja)</h3>
+            <p class="tagline mb-4 text-sm sm:text-base">Seu Iogurte Vegano Cremoso, Sem Soja e Cheio de Sabor!</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                    <div class="photo-placeholder mb-4 w-58 h-58">
+                    <div class="photo-placeholder mb-4 w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mx-auto md:mx-0">
                         <img src="SOLO.png" alt="Foto Bragurt Vegetal Coco" id="bragurtCocoImage">
                     </div>
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
-                    <ul class="list-none space-y-2 mb-4">
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">🌱</span><strong>100% Vegetal e Vegano:</strong> Ideal para dietas baseadas em plantas.</li>
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">🥥</span><strong>Base de Leite de Coco:</strong> Cremoso e saboroso.</li>
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">🚫</span><strong>Fórmula Sem Soja:</strong> Atende a restrições e preferências.</li>
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">🦠</span><strong>Fermentado com Microrganismos Benéficos.</strong></li>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
+                    <ul class="list-none space-y-2 mb-4 text-sm sm:text-base">
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">🌱</span><strong>100% Vegetal e Vegano</strong></li>
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">🥥</span><strong>Base de Leite de Coco</strong></li>
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">🚫</span><strong>Fórmula Sem Soja</strong></li>
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">🦠</span><strong>Fermentado com Microrganismos Benéficos.</strong></li>
                     </ul>
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Custo:</h4>
-                    <p><span class="cost-highlight text-xl">R$ 56,30</span></p>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Custo:</h4>
+                    <p class="text-sm sm:text-base"><span class="cost-highlight text-lg sm:text-xl">R$ 56,30</span></p>
                 </div>
-                <div>
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Ingredientes Chave:</h4>
-                    <p class="mb-4 text-sm">Leite de coco, amido de mandioca, maltitol, goma guar, ácido cítrico, fosfato tricálcico, citrato de sódio, Vitamina B12.</p>
-
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Modo de Preparo Simples e Rápido:</h4>
-                    <ol class="list-decimal list-inside space-y-2 mb-4 bg-emerald-50 p-4 rounded-lg border border-emerald-200">
+                <div class="text-sm sm:text-base">
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Ingredientes Chave:</h4>
+                    <p class="mb-4 text-xs sm:text-sm">Leite de coco, amido de mandioca...</p>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Modo de Preparo Simples e Rápido:</h4>
+                    <ol class="list-decimal list-inside space-y-2 mb-4 bg-emerald-50 p-3 sm:p-4 rounded-lg border border-emerald-200 text-xs sm:text-sm">
                         <li>Adicione 20g de sopa do pó a 160mL de água.</li>
                         <li>Misture bem até dissolver completamente.</li>
                         <li>Pronto para consumo!</li>
                         <li><strong>Opcional (Textura de Iogurte):</strong> Leve à geladeira por 30 minutos.</li>
                     </ol>
-                    <p class="text-sm text-gray-600 mb-4">Rendimento: Aproximadamente 12 porções de 180g.</p>
-
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Precauções:</h4>
-                    <p class="text-sm text-red-600">Pode conter traços de soja devido ao compartilhamento de maquinário.</p>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-4">Rendimento: Aproximadamente 12 porções de 180g.</p>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Precauções:</h4>
+                    <p class="text-xs sm:text-sm text-red-600">Pode conter traços de soja...</p>
                 </div>
             </div>
         </article>
 
-        <article class="product-card">
-            <h3 class="text-2xl font-semibold text-[#073B4C] mb-1">Bragurt Vegetal – Base Soja</h3>
-            <p class="tagline mb-4">Deliciosos Sabores Veganos com a Suavidade da Soja!</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="product-card p-4 sm:p-6">
+            <h3 class="text-xl sm:text-2xl font-semibold text-[#073B4C] mb-1">Bragurt Vegetal – Base Soja</h3>
+            <p class="tagline mb-4 text-sm sm:text-base">Deliciosos Sabores Veganos com a Suavidade da Soja!</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                    <div id="bragurtSojaPhotoPlaceholder" class="photo-placeholder mb-4 w-58 h-58">
+                    <div id="bragurtSojaPhotoPlaceholder" class="photo-placeholder mb-4 w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mx-auto md:mx-0">
                         <img src="https://probioticosdobrasil.com.br/wp-content/uploads/2023/10/Bragurt-Vegetal-Bragurt-Combo-4-unidades.png" alt="Foto Bragurt Vegetal Base Soja" id="bragurtSojaImage">
                     </div>
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Sabores Disponíveis:</h4>
-                    <ul id="bragurtSojaSabores" class="flavor-list mb-4 w-58 h-58">
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Sabores Disponíveis:</h4>
+                    <ul id="bragurtSojaSabores" class="flavor-list mb-4">
                         <li data-flavor="Morango" data-image-url="https://probioticosdobrasil.com.br/wp-content/uploads/2022/04/mockup-frutilla-brasil.png">Morango</li>
                         <li data-flavor="Natural" data-image-url="https://probioticosdobrasil.com.br/wp-content/uploads/2022/04/mockup-natural-brasil.png">Natural</li>
                         <li data-flavor="Baunilha" data-image-url="https://probioticosdobrasil.com.br/wp-content/uploads/2022/04/mockup-vainilla-brasil.png">Baunilha</li>
                         <li data-flavor="Banana" data-image-url="https://probioticosdobrasil.com.br/wp-content/uploads/2023/10/Bragurt-Vegetal-Banana.png">Banana</li>
                     </ul>
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
-                    <ul class="list-none space-y-2 mb-4">
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">🌱</span><strong>100% Vegetal e Vegano.</strong></li>
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">🥛</span><strong>Base de Leite de Soja:</strong> Leve e nutritivo.</li>
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">🍓</span><strong>Variedade de Sabores:</strong> Para todos os gostos.</li>
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">🦠</span><strong>Fermentado com Microrganismos Benéficos.</strong></li>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
+                    <ul class="list-none space-y-2 mb-4 text-sm sm:text-base">
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">🌱</span><strong>100% Vegetal e Vegano.</strong></li>
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">🥛</span><strong>Base de Leite de Soja</strong></li>
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">🍓</span><strong>Variedade de Sabores</strong></li>
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">🦠</span><strong>Fermentado com Microrganismos Benéficos.</strong></li>
                     </ul>
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Custo (por sabor):</h4>
-                    <p><span class="cost-highlight text-xl">R$ 56,30</span> (valor estimado)</p>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Custo (por sabor):</h4>
+                    <p class="text-sm sm:text-base"><span class="cost-highlight text-lg sm:text-xl">R$ 56,30</span> (valor estimado)</p>
                 </div>
-                <div>
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Ingredientes Chave (Base):</h4>
-                    <p class="mb-4 text-sm">Leite de soja, açúcar (ou adoçante conforme sabor), amido modificado, culturas probióticas, aromas e corantes naturais (conforme sabor).</p>
-
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Modo de Preparo Similar:</h4>
-                    <ol class="list-decimal list-inside space-y-2 mb-4 bg-emerald-50 p-4 rounded-lg border border-emerald-200">
+                <div class="text-sm sm:text-base">
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Ingredientes Chave (Base):</h4>
+                    <p class="mb-4 text-xs sm:text-sm">Leite de soja, açúcar...</p>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Modo de Preparo Similar:</h4>
+                    <ol class="list-decimal list-inside space-y-2 mb-4 bg-emerald-50 p-3 sm:p-4 rounded-lg border border-emerald-200 text-xs sm:text-sm">
                         <li>Adicione 20g de sopa do pó a 160mL de água.</li>
                         <li>Misture bem até dissolver.</li>
                         <li>Para textura de iogurte, refrigere por cerca de 30 minutos.</li>
                     </ol>
-                    <p class="text-sm text-gray-600 mb-4">Rendimento: Varia conforme embalagem.</p>
-
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Precauções:</h4>
-                    <p class="text-sm text-red-600"><strong>Contém Soja.</strong> Verificar rótulo para outros alérgenos específicos de cada sabor.</p>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-4">Rendimento: Varia conforme embalagem.</p>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Precauções:</h4>
+                    <p class="text-xs sm:text-sm text-red-600"><strong>Contém Soja.</strong> Verificar rótulo...</p>
                 </div>
             </div>
         </article>
     </section>
 
-    <section id="bragurt-lacteo" class="mb-24 pt-16 -mt-16">
-        <h2 class="text-3xl font-bold mb-2 text-[#073B4C] flex justify-center">
+    <section id="bragurt-lacteo" class="mb-24 pt-16 -mt-16 text-center"> <h2 class="text-2xl sm:text-3xl font-bold mb-2 text-[#073B4C] flex justify-center">
             <span class="section-title-underline">FERMENTOS LÁCTEOS</span>
         </h2>
-        <p class="text-center text-lg text-gray-700 mb-8">Transforme o leite no seu iogurte caseiro, fresco e cheio de probióticos!</p>
+        <p class="text-center text-base sm:text-lg text-gray-700 mb-8">Transforme o leite no seu iogurte caseiro, fresco e cheio de probióticos!</p>
 
-        <article class="product-card">
-            <h3 class="text-2xl font-semibold text-[#073B4C] mb-1">Bragurt Lácteo Tradicional</h3>
-            <p class="tagline mb-4">Seu Iogurte Caseiro Cremoso, Saudável e Delicioso!</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <article class="product-card p-4 sm:p-6">
+            <h3 class="text-xl sm:text-2xl font-semibold text-[#073B4C] mb-1">Bragurt Lácteo Tradicional</h3>
+            <p class="tagline mb-4 text-sm sm:text-base">Seu Iogurte Caseiro Cremoso, Saudável e Delicioso!</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 items-start">
                 <div>
-                    <div id="bragurtLacteoPhotoContainer" class="photo-placeholder mb-4 w-58 h-58">
+                    <div id="bragurtLacteoPhotoContainer" class="photo-placeholder mb-4 w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 mx-auto md:mx-0">
                         <img src="https://probioticosdobrasil.com.br/wp-content/uploads/2021/03/5-u-solo.png" alt="Foto Bragurt Lácteo" id="bragurtLacteoImage" class="w-full h-full object-contain rounded-md">
                     </div>
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Versões Disponíveis:</h4>
-                    <ul id="bragurtLacteoVersoes" class="version-list mb-4 w-58 h-58">
-                        <li data-version="5 Litros" data-price="42,90" data-image-url="https://probioticosdobrasil.com.br/wp-content/uploads/2021/03/5-u-solo.png">Para 5 Litros</li>
-                        <li data-version="10 Litros" data-price="67,30" data-image-url="https://probioticosdobrasil.com.br/wp-content/uploads/2021/03/10-u-solo.png">Para 10 Litros</li>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Versões Disponíveis:</h4>
+                    <ul id="bragurtLacteoVersoes" class="version-list mb-4">
+                        <li data-version="5 Litros" data-price="42.90" data-image-url="https://probioticosdobrasil.com.br/wp-content/uploads/2021/03/5-u-solo.png">Para 5 Litros</li>
+                        <li data-version="10 Litros" data-price="67.30" data-image-url="https://probioticosdobrasil.com.br/wp-content/uploads/2021/03/10-u-solo.png">Para 10 Litros</li>
                     </ul>
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
-                    <ul class="list-none space-y-2 mb-4">
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">🏡</span><strong>Iogurte Fresco em Casa:</strong> Prepare seu próprio iogurte natural.</li>
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">🧑‍🍳</span><strong>Controle Total dos Ingredientes:</strong> Sem conservantes ou adoçantes indesejados.</li>
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">🦠</span><strong>Rico em Probióticos Vivos:</strong> Cepas selecionadas para saúde intestinal.</li>
-                        <li class="benefit-item"><span class="benefit-icon text-2xl">💰</span><strong>Econômico e Sustentável:</strong> Menos embalagens, mais iogurte.</li>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Benefícios Principais:</h4>
+                    <ul class="list-none space-y-2 mb-4 text-sm sm:text-base">
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">🏡</span><strong>Iogurte Fresco em Casa</strong></li>
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">🧑‍🍳</span><strong>Controle Total dos Ingredientes</strong></li>
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">🦠</span><strong>Rico em Probióticos Vivos</strong></li>
+                        <li class="benefit-item"><span class="benefit-icon text-lg sm:text-xl md:text-2xl">💰</span><strong>Econômico e Sustentável</strong></li>
                     </ul>
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Custo:</h4>
-                    <p><span id="bragurtLacteoPrice" class="cost-highlight text-xl">R$ 35,00</span></p>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Custo:</h4>
+                    <p class="text-sm sm:text-base"><span id="bragurtLacteoPrice" class="cost-highlight text-lg sm:text-xl">R$ 35,00</span></p>
                 </div>
-                <div>
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Ingredientes Chave:</h4>
-                    <p class="mb-4 text-sm">Culturas lácteas liofilizadas (ex: *Streptococcus thermophilus, Lactobacillus bulgaricus, Bifidobacterium lactis*).</p>
+                <div class="text-sm sm:text-base">
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Ingredientes Chave:</h4>
+                    <p class="mb-4 text-xs sm:text-sm">Culturas lácteas liofilizadas...</p>
 
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Modo de Preparo:</h4>
-                    <ol class="list-decimal list-inside space-y-2 mb-4 bg-sky-50 p-4 rounded-lg border border-sky-200">
-                        <li>Aqueça a quantidade de leite indicada pela versão (5L ou 10L - integral, semi ou desnatado) a 40-45°C.</li>
-                        <li>Dissolva o conteúdo do sachê Bragurt Lácteo no leite morno.</li>
-                        <li>Mantenha em recipiente fechado, em local aquecido (ou iogurteira) por 6-10 horas.</li>
-                        <li>Após consistência firme, leve à geladeira por pelo menos 2 horas antes de consumir.</li>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Modo de Preparo:</h4>
+                    <ol class="list-decimal list-inside space-y-2 mb-4 bg-sky-50 p-3 sm:p-4 rounded-lg border border-sky-200 text-xs sm:text-sm">
+                        <li>Aqueça a quantidade de leite indicada...</li>
+                        <li>Dissolva o conteúdo do sachê...</li>
+                        <li>Mantenha em recipiente fechado...</li>
+                        <li>Após consistência firme...</li>
                     </ol>
-                    <p class="text-sm text-gray-600 mb-4">Pode ser usado para fazer iogurte natural, coalhada, e como base para outras receitas.</p>
+                    <p class="text-xs sm:text-sm text-gray-600 mb-4">Pode ser usado para fazer iogurte natural...</p>
 
-                    <h4 class="font-semibold text-lg mb-2 text-[#118AB2]">Precauções:</h4>
-                    <p class="text-sm text-red-600">Requer leite de origem animal para fermentação. Manter refrigerado após o preparo.</p>
+                    <h4 class="font-semibold text-base sm:text-lg mb-2 text-[#118AB2]">Precauções:</h4>
+                    <p class="text-xs sm:text-sm text-red-600">Requer leite de origem animal...</p>
                 </div>
             </div>
         </article>
     </section>
 
 
-    <section id="porque-escolher" class="bg-white p-12 rounded-xl shadow-lg pt-16 -mt-16 relative z-10">
-        <h2 class="text-3xl font-bold text-center mb-8 section-title-underline text-[#073B4C]">Por que escolher Probióticos do Brasil?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="p-6 rounded-lg hover:shadow-xl transition-shadow bg-sky-50">
-                <span class="text-5xl mb-4 inline-block text-[#118AB2]">🎯</span>
-                <h3 class="text-xl font-semibold mb-2 text-[#073B4C]">Soluções Específicas</h3>
-                <p class="text-gray-700">Produtos desenvolvidos para atender diferentes necessidades de saúde e estilos de vida, para que você encontre a solução ideal.</p>
+    <section id="porque-escolher" class="bg-white p-6 sm:p-8 md:p-12 rounded-xl shadow-lg pt-12 sm:pt-16 -mt-16 relative z-10"> <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 section-title-underline text-[#073B4C]">Por que escolher Probióticos do Brasil?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 text-center">
+            <div class="p-4 sm:p-6 rounded-lg hover:shadow-xl transition-shadow bg-sky-50">
+                <span class="text-4xl sm:text-5xl mb-4 inline-block text-[#118AB2]">🎯</span>
+                <h3 class="text-lg sm:text-xl font-semibold mb-2 text-[#073B4C]">Soluções Específicas</h3>
+                <p class="text-gray-700 text-sm sm:text-base">Produtos desenvolvidos para atender diferentes necessidades...</p>
             </div>
-            <div class="p-6 rounded-lg hover:shadow-xl transition-shadow bg-green-50">
-                <span class="text-5xl mb-4 inline-block text-[#06D6A0]">🔬</span>
-                <h3 class="text-xl font-semibold mb-2 text-[#073B4C]">Tecnologia e Qualidade</h3>
-                <p class="text-gray-700">Ingredientes de alta qualidade e tecnologias avançadas, como microencapsulação, garantindo máxima eficácia e confiança.</p>
+            <div class="p-4 sm:p-6 rounded-lg hover:shadow-xl transition-shadow bg-green-50">
+                <span class="text-4xl sm:text-5xl mb-4 inline-block text-[#06D6A0]">🔬</span>
+                <h3 class="text-lg sm:text-xl font-semibold mb-2 text-[#073B4C]">Tecnologia e Qualidade</h3>
+                <p class="text-gray-700 text-sm sm:text-base">Ingredientes de alta qualidade e tecnologias avançadas...</p>
             </div>
-            <div class="p-6 rounded-lg hover:shadow-xl transition-shadow bg-yellow-50">
-                <span class="text-5xl mb-4 inline-block text-[#FFD166]">❤️</span>
-                <h3 class="text-xl font-semibold mb-2 text-[#073B4C]">Opções para Todos</h3>
-                <p class="text-gray-700">Alternativas veganas, sem lactose, sem glúten e enriquecidas com vitaminas, pensando na inclusividade e necessidades diversas.</p>
+            <div class="p-4 sm:p-6 rounded-lg hover:shadow-xl transition-shadow bg-yellow-50">
+                <span class="text-4xl sm:text-5xl mb-4 inline-block text-[#FFD166]">❤️</span>
+                <h3 class="text-lg sm:text-xl font-semibold mb-2 text-[#073B4C]">Opções para Todos</h3>
+                <p class="text-gray-700 text-sm sm:text-base">Alternativas veganas, sem lactose, sem glúten...</p>
             </div>
         </div>
     </section>
 
 </main>
 
-<footer class="bg-gradient-to-r from-[#073B4C] to-[#118AB2] text-white text-center p-8 mt-20 rounded-t-xl shadow-top">
-    <h3 class="text-2xl font-bold mb-4">Transforme sua Saúde de Dentro para Fora!</h3>
-    <p class="mb-6">Descubra a linha completa de produtos da Probióticos do Brasil e invista no seu bem-estar com soluções probióticas de alta performance.</p>
+<footer class="bg-gradient-to-r from-[#073B4C] to-[#118AB2] text-white text-center p-6 sm:p-8 mt-16 sm:mt-20 rounded-t-xl shadow-top"> <h3 class="text-xl sm:text-2xl font-bold mb-4">Transforme sua Saúde de Dentro para Fora!</h3>
+    <p class="mb-6 text-sm sm:text-base">Descubra a linha completa de produtos da Probióticos do Brasil e invista no seu bem-estar com soluções probióticas de alta performance.</p>
     <a href="https://probioticosdobrasil.com.br" target="_blank" rel="noopener noreferrer"
-       class="bg-[#FFD166] hover:bg-[#FFC33A] text-[#073B4C] font-bold py-3 px-8 rounded-lg text-lg transition-colors shadow-md hover:shadow-lg">
-        Visite o Site e Saiba Mais!
+       class="bg-[#FFD166] hover:bg-[#FFC33A] text-[#073B4C] font-bold py-2 px-4 text-sm sm:py-3 sm:px-6 sm:text-base md:text-lg rounded-lg transition-colors shadow-md hover:shadow-lg"> Visite o Site e Saiba Mais!
     </a>
-    <div class="mt-8 mb-4 flex justify-center space-x-6">
-        <a href="https://www.instagram.com/probioticos_brasil/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Probióticos do Brasil">
-            <i class="fab fa-instagram social-icon"></i>
-        </a>
+    <div class="mt-8 mb-4 flex justify-center space-x-4 sm:space-x-6"> <a href="https://www.instagram.com/probioticos_brasil/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Probióticos do Brasil">
+            <i class="fab fa-instagram social-icon text-2xl sm:text-3xl"></i> </a>
         <a href="https://facebook.com/probioticosdobrasil" target="_blank" rel="noopener noreferrer" aria-label="Facebook Probióticos do Brasil">
-            <i class="fab fa-facebook-f social-icon"></i>
+            <i class="fab fa-facebook-f social-icon text-2xl sm:text-3xl"></i>
         </a>
         <a href="https://wa.me/554591369326" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Probióticos do Brasil">
-            <i class="fab fa-whatsapp social-icon"></i>
+            <i class="fab fa-whatsapp social-icon text-2xl sm:text-3xl"></i>
         </a>
     </div>
-    <p class="text-sm opacity-80">&copy; <span id="currentYear"></span> Infográfico Probióticos do Brasil. Design Ilustrativo.</p>
+    <p class="text-xs sm:text-sm opacity-80">&copy; <span id="currentYear"></span> Infográfico Probióticos do Brasil. Design Ilustrativo.</p>
 </footer>
 
 <script>
@@ -439,28 +431,48 @@
 
     const navLinks = document.querySelectorAll('#product-nav a');
     const sections = document.querySelectorAll('main section');
+    const stickyNavHeight = document.getElementById('product-nav') ? document.getElementById('product-nav').offsetHeight : 0;
+
 
     function changeNavActiveState() {
         let index = sections.length;
-        const offset = window.innerHeight * 0.3;
+        // Ajustar o offset para considerar a altura da navegação fixa (sticky-nav) e um pouco mais para ativar antes.
+        const offset = stickyNavHeight + window.innerHeight * 0.2;
 
-        while(--index && window.scrollY + offset < sections[index].offsetTop) {}
 
+        while(--index >= 0 && window.scrollY + offset < sections[index].offsetTop) {}
+        
         navLinks.forEach((link) => link.classList.remove('active'));
 
-        const currentSection = sections[index];
-        if (currentSection) {
-            const currentLink = document.querySelector(`#product-nav a[href="#${currentSection.id}"]`);
-            if (currentLink) {
-                currentLink.classList.add('active');
+        if (index >= 0) {
+            const currentSection = sections[index];
+            if (currentSection) {
+                const currentLink = document.querySelector(`#product-nav a[href="#${currentSection.id}"]`);
+                if (currentLink) {
+                    currentLink.classList.add('active');
+                     // Scroll o item ativo para o centro da nav se estiver scrollable
+                    const navContainer = document.querySelector('#product-nav .container');
+                    if (navContainer && navContainer.scrollWidth > navContainer.clientWidth) {
+                        const activeRect = currentLink.getBoundingClientRect();
+                        const containerRect = navContainer.getBoundingClientRect();
+                        const scrollAmount = activeRect.left - containerRect.left - (containerRect.width / 2) + (activeRect.width / 2);
+                        navContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    }
+                }
             }
+        } else if (sections.length > 0 && window.scrollY < sections[0].offsetTop - offset) { 
+             navLinks.forEach((link) => link.classList.remove('active'));
         }
     }
+
 
     window.addEventListener('scroll', changeNavActiveState);
     window.addEventListener('resize', changeNavActiveState);
     document.addEventListener('DOMContentLoaded', () => {
-        changeNavActiveState();
+        // É importante chamar changeNavActiveState após o DOM estar carregado
+        // e talvez após um pequeno delay se houver carregamento de imagens que afetem offsets
+        setTimeout(changeNavActiveState, 100);
+
 
         // Bragurt Soja Flavor Photo Changer
         const bragurtSojaImageElement = document.getElementById('bragurtSojaImage');
@@ -477,7 +489,7 @@
                     this.classList.add('active-flavor');
                 });
             });
-            if(flavorItems[0]){
+            if(flavorItems[0]){ 
                 flavorItems[0].click();
             }
         }
@@ -491,18 +503,21 @@
             versionItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const versionName = this.dataset.version;
-                    const versionPrice = parseFloat(this.dataset.price).toFixed(2);
+                    // Correção para o preço que pode vir com vírgula
+                    const versionPrice = parseFloat(String(this.dataset.price).replace(',', '.')).toFixed(2);
                     const imageUrl = this.dataset.imageUrl;
 
                     bragurtLacteoImageElement.src = imageUrl;
                     bragurtLacteoImageElement.alt = `Foto Bragurt Lácteo Versão ${versionName}`;
-                    bragurtLacteoPriceElement.textContent = `R$ ${versionPrice.replace('.', ',')}`;
+                    if (bragurtLacteoPriceElement) { // Checar se o elemento existe
+                        bragurtLacteoPriceElement.textContent = `R$ ${versionPrice.replace('.', ',')}`;
+                    }
 
                     versionItems.forEach(i => i.classList.remove('active-version'));
                     this.classList.add('active-version');
                 });
             });
-            if(versionItems[0]){
+            if(versionItems[0]){ 
                 versionItems[0].click();
             }
         }
